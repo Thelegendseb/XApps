@@ -1,4 +1,5 @@
-﻿Public Class Shapes
+﻿
+Public Class Shapes
     Public Class TwoD
 
         '===============================
@@ -68,58 +69,154 @@
             '==============================
             '   Public Functions/Procedures
             '==============================
-            Public Sub SetX(val As Double)
+            Public Overridable Sub SetX(val As Double)
                 Me.X = val
             End Sub
-            Public Sub SetY(val As Double)
+            Public Overridable Sub SetY(val As Double)
                 Me.Y = val
             End Sub
-            Public Sub SetWidth(val As Double)
+            Public Overridable Sub SetWidth(val As Double)
                 Me.Width = val
             End Sub
-            Public Sub SetHeight(val As Double)
+            Public Overridable Sub SetHeight(val As Double)
                 Me.Height = val
             End Sub
-            Public Sub SetTheta(val As Double)
+            Public Overridable Sub SetTheta(val As Double)
                 Me.Theta = val
             End Sub
-            Public Function GetX() As Double
+            Public Overridable Function GetX() As Double
                 Return Me.X
             End Function
-            Public Function GetY() As Double
+            Public Overridable Function GetY() As Double
                 Return Me.Y
             End Function
-            Public Function GetWidth() As Double
+            Public Overridable Function GetWidth() As Double
                 Return Me.Width
             End Function
-            Public Function GetHeight() As Double
+            Public Overridable Function GetHeight() As Double
                 Return Me.Height
             End Function
-            Public Function GetTheta() As Double
+            Public Overridable Function GetTheta() As Double
                 Return Me.Theta
             End Function
             '---------------------------
-            Public Sub SetBounds(val As System.Drawing.Rectangle)
+            Public Overridable Sub SetBounds(val As System.Drawing.Rectangle)
                 Me.X = val.X - val.Width / 2
                 Me.Y = val.Y - val.Height / 2
                 Me.Width = val.Width
                 Me.Height = val.Height
             End Sub
-            Public Function GetBounds() As System.Drawing.Rectangle
+            Public Overridable Function GetBounds() As System.Drawing.Rectangle
                 Return New System.Drawing.Rectangle(Me.X - Me.Width / 2, Me.Y - Me.Height / 2, Me.Width, Me.Height)
             End Function
             '---------------------------
-            Public Sub StretchHorizontal(ScaleFactor As Double, Optional ReCentre As Boolean = False)
+            Public Overridable Sub StretchHorizontal(ScaleFactor As Double, Optional ReCentre As Boolean = False)
                 Me.Width *= ScaleFactor
                 If ReCentre Then
                     '  Me.X -= Me.Width / 2
                 End If
             End Sub
-            Public Sub StretchVertical(ScaleFactor As Double, Optional ReCentre As Boolean = False)
+            Public Overridable Sub StretchVertical(ScaleFactor As Double, Optional ReCentre As Boolean = False)
                 Me.Height *= ScaleFactor
                 If ReCentre Then
                     ' Me.Y -= Me.Height / 2
                 End If
+            End Sub
+        End Class
+        Public Class Message
+            Inherits TwoDBase
+            Private Font As FontFamily
+            Private FontStyle As FontStyle
+            Private Size As Integer
+            Private Text As String
+            Private Brush As Brush
+            Private Shadow As Boolean
+            Private SpinRate As Double
+            Sub New()
+                Me.Text = ""
+                Init()
+            End Sub
+            Sub New(text As String)
+                Me.Text = text
+                Init()
+            End Sub
+            Private Sub Init()
+                Me.Font = FontFamily.GenericSansSerif
+                Me.FontStyle = FontStyle.Regular
+                Me.Brush = Brushes.Black
+                Me.Size = 12
+                Me.X = 0
+                Me.Y = 0
+                Me.SpinRate = 0
+            End Sub
+            Public Overrides Sub Update(Session As XSession)
+                Me.Theta += Me.SpinRate
+            End Sub
+            Public Overrides Sub Draw(ByRef g As Graphics)
+                Dim NewFont As New Font(Me.Font, Me.Size, Me.FontStyle)
+                If Me.Shadow Then
+                    Dim UnderSize As Integer = Me.Size / 20
+                    If UnderSize = 0 Then UnderSize = 1
+                    Dim Br As SolidBrush = XArt.GetShaded(Me.Brush, 20)
+                    g.DrawString(Me.Text, NewFont, Br, (Me.X - Me.GetWidth / 2) + UnderSize, (Me.Y - Me.GetHeight / 2) + UnderSize)
+                    Br.Dispose()
+                End If
+                g.DrawString(Me.Text, NewFont, Me.Brush, Me.X - Me.GetWidth / 2, Me.Y - Me.GetHeight / 2)
+                NewFont.Dispose()
+            End Sub
+            Public Overrides Function GetWidth() As Double
+                Dim NewFont As New Font(Me.Font, Me.Size, Me.FontStyle)
+                Dim textSize As Size = TextRenderer.MeasureText(Me.Text, NewFont)
+                NewFont.Dispose()
+                Return textSize.Width
+            End Function
+            Public Overrides Function GetHeight() As Double
+                Dim NewFont As New Font(Me.Font, Me.Size, Me.FontStyle)
+                Dim textSize As Size = TextRenderer.MeasureText(Me.Text, NewFont)
+                NewFont.Dispose()
+                Return textSize.Height
+            End Function
+            Public Function GetFont() As FontFamily
+                Return Me.Font
+            End Function
+            Public Sub SetFont(Font As FontFamily)
+                Me.Font = Font
+            End Sub
+            Public Function GetFontStyle() As FontStyle
+                Return Me.FontStyle
+            End Function
+            Public Sub SetFontStyle(FontStyle As FontStyle)
+                Me.FontStyle = FontStyle
+            End Sub
+            Public Function GetText() As String
+                Return Me.Text
+            End Function
+            Public Sub SetText(Text As String)
+                Me.Text = Text
+            End Sub
+            Public Function GetBrush() As Brush
+                Return Me.Brush
+            End Function
+            Public Sub SetBrush(Brush As Brush)
+                Me.Brush = Brush
+            End Sub
+            Public Function GetSize() As Integer
+                Return Me.Size
+            End Function
+            Public Sub SetSize(Size As Integer)
+                Me.Size = Size
+            End Sub
+            Public Function GetShadow() As Boolean
+                Return Me.Shadow
+            End Function
+            Public Sub SetShadow(Shadow As Boolean)
+                Me.Shadow = Shadow
+            End Sub
+            Public Function GetSpinRate() As Double
+                Return Me.SpinRate
+            End Function
+            Public Sub SetSpinRate(SpinRate As Double)
+                Me.SpinRate = SpinRate
             End Sub
         End Class
         Public Class Box

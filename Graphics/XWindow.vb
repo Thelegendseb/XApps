@@ -10,8 +10,6 @@
     'When Declared with events, you can easily handle to the events of the window.
 
     '==================================
-
-    Public KeyManager As XInput
     Private MouseBox As Rectangle
     Private MouseBoxDimension As Byte
     Private g As BufferedGraphics
@@ -30,7 +28,6 @@
         Me.g = Me.b.Allocate(Me.CreateGraphics, Me.DisplayRectangle)
         Me.MouseBoxDimension = 4
         Me.MouseBox = New Rectangle(0, 0, Me.MouseBoxDimension, Me.MouseBoxDimension)
-        Me.KeyManager = New XInput(Me)
     End Sub
     Private Sub UpdateMouseBox(e As MouseEventArgs)
         Me.MouseBox = New Rectangle(e.X - MouseBoxDimension, e.Y - MouseBoxDimension, MouseBoxDimension * 2, MouseBoxDimension * 2)

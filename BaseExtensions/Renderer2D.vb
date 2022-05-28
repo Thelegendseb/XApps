@@ -12,6 +12,7 @@
     Inherits XBase
     Private ObjectListPointer As List(Of Shapes.TwoD.TwoDBase)
     Sub New(Session As XSession)
+        Session.QueueRelease()
         ResetPointer(Session)
         Me.SetDrawStatus(True)
     End Sub
@@ -23,10 +24,10 @@
     Public Overrides Sub Draw(ByRef g As Drawing.Graphics)
         Using FrameMatrix As New System.Drawing.Drawing2D.Matrix
             For Each Shape As Shapes.TwoD.TwoDBase In Me.ObjectListPointer
-                FrameMatrix.Rotate(Shape.GetTheta)
+                FrameMatrix.RotateAt(Shape.GetTheta, New PointF(Shape.GetX, Shape.GetY))
                 g.Transform = FrameMatrix
                 Shape.Draw(g)
-                FrameMatrix.Rotate(-Shape.GetTheta)
+                FrameMatrix.Reset()
             Next
         End Using
     End Sub

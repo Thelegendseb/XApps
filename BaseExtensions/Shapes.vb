@@ -100,13 +100,13 @@
             End Function
             '---------------------------
             Public Sub SetBounds(val As System.Drawing.Rectangle)
-                Me.X = val.X
-                Me.Y = val.Y
+                Me.X = val.X - val.Width / 2
+                Me.Y = val.Y - val.Height / 2
                 Me.Width = val.Width
                 Me.Height = val.Height
             End Sub
             Public Function GetBounds() As System.Drawing.Rectangle
-                Return New System.Drawing.Rectangle(Me.X, Me.Y, Me.Width, Me.Height)
+                Return New System.Drawing.Rectangle(Me.X - Me.Width / 2, Me.Y - Me.Height / 2, Me.Width, Me.Height)
             End Function
             '---------------------------
             Public Sub StretchHorizontal(ScaleFactor As Double, Optional ReCentre As Boolean = False)
@@ -136,6 +136,8 @@
             Public Sub New(xin As Double, yin As Double, widthin As Double, heightin As Double, thetain As Double)
                 MyBase.New(xin, yin, widthin, heightin, thetain)
             End Sub
+            Public Overrides Sub Update(Session As XSession)
+            End Sub
             Public Overrides Sub Draw(ByRef g As Drawing.Graphics)
                 g.DrawRectangle(Drawing.Pens.Black, Me.GetBounds())
             End Sub
@@ -158,6 +160,30 @@
                 g.DrawEllipse(Drawing.Pens.Black, Me.GetBounds())
             End Sub
         End Class
+        Public Class Circle
+            Inherits TwoDBase
+            Public Sub New()
+                MyBase.New()
+            End Sub
+            Public Sub New(xin As Double, yin As Double)
+                MyBase.New(xin, yin)
+            End Sub
+            Public Sub New(xin As Double, yin As Double, radiusin As Double)
+                MyBase.New(xin, yin, radiusin, radiusin)
+            End Sub
+            Public Overrides Sub Update(Session As XSession)
+            End Sub
+            Public Overrides Sub Draw(ByRef g As Drawing.Graphics)
+                g.DrawEllipse(Drawing.Pens.Black, Me.GetBounds())
+            End Sub
+            Public Sub SetRadius(val As Double)
+                Me.Width = val
+                Me.Height = val
+            End Sub
+            Public Function GetRadius() As Double
+                Return Me.Width
+            End Function
+        End Class
         Public Class SpinningBox
             Inherits Box
             Private SpinRate As Decimal
@@ -174,7 +200,6 @@
                 MyBase.New(xin, yin, widthin, heightin, thetain)
             End Sub
             Public Overrides Sub Update(Session As XSession)
-                MyBase.Update(Session)
                 Me.Theta += Me.SpinRate
             End Sub
             Public Sub SetSpinRate(val As Decimal)
@@ -200,7 +225,6 @@
                 MyBase.New(xin, yin, widthin, heightin, thetain)
             End Sub
             Public Overrides Sub Update(Session As XSession)
-                MyBase.Update(Session)
                 Me.Theta += Me.SpinRate
             End Sub
             Public Sub SetSpinRate(val As Decimal)

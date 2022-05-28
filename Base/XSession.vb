@@ -29,7 +29,6 @@ Public Class XSession
 
     '====================================
     Public WithEvents Window As XWindow
-
     Private Running As Boolean
     Private FPS As Short
     Private Containers As XObjHolder
@@ -50,10 +49,14 @@ Public Class XSession
         Me.Running = False
     End Sub
     Private Sub BeginMainLoop()
+        Dim LoopTimer As New Stopwatch
         While Me.Running
+            LoopTimer.Restart()
             Me.Update()
             Me.Draw()
             Application.DoEvents()
+            LoopTimer.Stop()
+            TimerTech(LoopTimer)
         End While
     End Sub
     Public Sub Update()
@@ -83,6 +86,12 @@ Public Class XSession
             Me.Containers.MainList.Add(Me.Containers.QueueList(0))
             Me.Containers.QueueList.RemoveAt(0)
         Next
+    End Sub
+    Private Sub TimerTech(ByRef Timer As Stopwatch)
+        Dim SleepTime As Integer = (1000 / Me.FPS) - Timer.ElapsedMilliseconds
+        If SleepTime > 0 Then
+            Threading.Thread.Sleep(SleepTime)
+        End If
     End Sub
     Public Sub QueueRelease()
         '{Release all objects in the queue into the main list}

@@ -1,6 +1,6 @@
 ﻿
-Public Class Shapes
-    Public Class TwoD
+Namespace Shapes
+    Namespace TwoD
 
         '===============================
         '  2D Shapes
@@ -331,14 +331,13 @@ Public Class Shapes
                 Return Me.SpinRate
             End Function
         End Class
-    End Class
-
-    Public Class ThreeD
+    End Namespace
+    Namespace ThreeD
 
         '===============================
         '  3D Shapes
         '===============================
 
-    End Class
+    End Namespace
 
-End Class
+End Namespace

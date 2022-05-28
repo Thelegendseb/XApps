@@ -155,8 +155,8 @@ Public Class Shapes
             Public Overrides Sub Draw(ByRef g As Graphics)
                 Dim NewFont As New Font(Me.Font, Me.Size, Me.FontStyle)
                 If Me.Shadow Then
-                    Dim UnderSize As Integer = Me.Size / 20
-                    If UnderSize = 0 Then UnderSize = 1
+                    Dim UnderSize As Integer = Me.Size / 100
+                    If UnderSize < 3 Then UnderSize = 3
                     Dim Br As SolidBrush = XArt.GetShaded(Me.Brush, 20)
                     g.DrawString(Me.Text, NewFont, Br, (Me.X - Me.GetWidth / 2) + UnderSize, (Me.Y - Me.GetHeight / 2) + UnderSize)
                     Br.Dispose()

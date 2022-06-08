@@ -281,6 +281,41 @@ Namespace Shapes
                 Return Me.Width
             End Function
         End Class
+        Public Class Triangle_Isosceles
+            Inherits TwoDBase
+            Public Sub New()
+                MyBase.New()
+            End Sub
+            Public Sub New(xin As Double, yin As Double)
+                MyBase.New(xin, yin)
+            End Sub
+            Public Sub New(xin As Double, yin As Double, widthin As Double, heightin As Double)
+                MyBase.New(xin, yin, widthin, heightin)
+            End Sub
+            Public Sub New(xin As Double, yin As Double, widthin As Double, heightin As Double, thetain As Double)
+                MyBase.New(xin, yin, widthin, heightin, thetain)
+            End Sub
+
+            'overrides the draw method to draw a triangle
+            'override the draw method and draw a triangle
+            Public Overrides Sub Draw(ByRef g As Graphics)
+
+                Dim PointArray(2) As Point
+                PointArray(0) = New Point(Me.X, Me.Y + Me.Height / 2)
+                PointArray(1) = New Point(Me.X - Me.Width / 2, Me.Y - Me.Height / 2)
+                PointArray(2) = New Point(Me.X + Me.Width / 2, Me.Y - Me.Height / 2)
+                g.DrawPolygon(Pens.Black, PointArray)
+
+            End Sub
+            Public Function GetPointArray() As Point()
+                Dim PointArray(2) As Point
+                PointArray(0) = New Point(Me.X, Me.Y + Me.Height / 2)
+                PointArray(1) = New Point(Me.X - Me.Width / 2, Me.Y - Me.Height / 2)
+                PointArray(2) = New Point(Me.X + Me.Width / 2, Me.Y - Me.Height / 2)
+                Return PointArray
+            End Function
+
+        End Class
         Public Class SpinningBox
             Inherits Box
             Private SpinRate As Decimal

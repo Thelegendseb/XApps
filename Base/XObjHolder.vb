@@ -3,6 +3,7 @@
     Public MainList As List(Of XBase)
     Public WhiteList As List(Of XBase)
     Public QueueList As List(Of XBase)
+    Public SubLists As Dictionary(Of Type, List(Of XBase))
 
     Public Sub New()
         Me.MainList = New List(Of XBase)

@@ -29,16 +29,21 @@ Public Class XSession
 
     '====================================
     Public WithEvents Window As XWindow
+    Public KeyManager As XInput
+
     Private Running As Boolean
-    Private FPS As Short
-    Private Containers As XObjHolder
+    Private Speed As Short
+    Private Containers As XObjHolder 'USE DICTIONARIES?
     Private Bounds As Rectangle
+
     '{will represent borders used by XBase Inheritors}
     '{usually will be the bounds of the window}
     Sub New(FormIn As Form)
         Me.Containers = New XObjHolder
-        Me.FPS = 60 '{default}
+        Me.Speed = 60 '{default}
         Me.Window = New XWindow(FormIn)
+        Me.Window.Select()
+        Me.KeyManager = New XInput(Me.Window)
         Me.SetBounds(FormIn.DisplayRectangle)
     End Sub
     Public Sub Begin()
@@ -88,7 +93,7 @@ Public Class XSession
         Next
     End Sub
     Private Sub TimerTech(ByRef Timer As Stopwatch)
-        Dim SleepTime As Integer = (1000 / Me.FPS) - Timer.ElapsedMilliseconds
+        Dim SleepTime As Integer = (1000 / Me.Speed) - Timer.ElapsedMilliseconds
         If SleepTime > 0 Then
             Threading.Thread.Sleep(SleepTime)
         End If
@@ -122,9 +127,13 @@ Public Class XSession
     Public Sub AddObj(Obj As XBase)
         Me.Containers.QueueList.Add(Obj)
     End Sub
+    Public Sub AddObjs(Objs As IEnumerable(Of XBase))
+        Me.Containers.QueueList.AddRange(Objs)
+    End Sub
     Public Function GetMatches(Of T)() As List(Of T)
         Return Me.Containers.MainList.OfType(Of T).ToList
     End Function
+
     Public Function GetBounds() As Rectangle
         Return Me.Bounds
     End Function
@@ -143,10 +152,10 @@ Public Class XSession
     Public Function GetObjQueueList() As List(Of XBase)
         Return Me.Containers.QueueList
     End Function
-    Public Sub SetFPS(FPS As Short)
-        Me.FPS = FPS
+    Public Sub SetSpeed(Speed As Short)
+        Me.Speed = Speed
     End Sub
-    Public Function GetFPS() As Short
-        Return Me.FPS
+    Public Function GetSpeed() As Short
+        Return Me.Speed
     End Function
 End Class

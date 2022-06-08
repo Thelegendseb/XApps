@@ -20,6 +20,7 @@
         Me.ObjectListPointer = Session.GetMatches(Of Shapes.TwoD.TwoDBase)
     End Sub
     Public Overrides Sub Update(Session As XSession)
+        ResetPointer(Session)
     End Sub
     Public Overrides Sub Draw(ByRef g As Drawing.Graphics)
         Using FrameMatrix As New System.Drawing.Drawing2D.Matrix

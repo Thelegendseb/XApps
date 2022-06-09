@@ -14,9 +14,11 @@
     Private MouseBoxDimension As Byte
     Private g As BufferedGraphics
     Private b As BufferedGraphicsContext
+    Private ClearColor As Color
     Sub New(ByRef Container As Control) '{Panel And/Or Form}
         MyBase.New()
         Me.Location = New Point(0, 0)
+        Me.ClearColor = Container.BackColor
         Me.Size = New Size(Container.ClientSize.Width, Container.ClientSize.Height)
         Init()
         Container.Controls.Add(Me)
@@ -52,4 +54,10 @@
     Public Sub EndDrawing()
         Me.g.Render()
     End Sub
+    Public Sub SetClearColor(c As Color)
+        Me.ClearColor = c
+    End Sub
+    Public Function GetClearColor() As Color
+        Return Me.ClearColor
+    End Function
 End Class

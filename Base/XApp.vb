@@ -10,9 +10,9 @@
     Private Sub AddHandlers(FormIn As Form)
         AddHandler Me.Session.Window.MouseDown, AddressOf Me.MouseDown
         AddHandler Me.Session.Window.MouseUp, AddressOf Me.MouseUp
-        AddHandler FormIn.KeyDown, AddressOf Me.KeyDown
-        AddHandler FormIn.KeyUp, AddressOf Me.KeyUp
-        AddHandler FormIn.ResizeEnd, AddressOf FormResize
+        AddHandler Me.Session.Window.KeyDown, AddressOf Me.KeyDown
+        AddHandler Me.Session.Window.KeyUp, AddressOf Me.KeyUp
+        AddHandler Me.Session.Window.SizeChanged, AddressOf FormResize
     End Sub
     Overridable Sub MouseDown(sender As Object, e As MouseEventArgs)
     End Sub

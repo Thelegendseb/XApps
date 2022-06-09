@@ -17,6 +17,7 @@
         Me.SetDrawStatus(True)
     End Sub
     Public Sub ResetPointer(Session As XSession)
+        Me.ObjectListPointer = Nothing
         Me.ObjectListPointer = Session.GetMatches(Of Shapes.TwoD.TwoDBase)
     End Sub
     Public Overrides Sub Update(Session As XSession)

@@ -72,7 +72,9 @@ Public Class XSession
     Private Sub ObjListIteration()
         For i = 0 To Me.Containers.MainList.Count - 1
             Dim Obj As XBase = Me.Containers.MainList(i)
-            Obj.Update(Me)
+            If Obj.IsSetToUpdate Then
+                Obj.Update(Me)
+            End If
             If Obj.IsSetToDispose Then
                 Me.Containers.WhiteList.Add(Obj)
             End If
@@ -108,7 +110,7 @@ Public Class XSession
     End Sub
     Private Sub Draw()
         Dim g As Graphics = Me.Window.GetGraphics
-        g.Clear(Color.White)
+        g.Clear(Me.Window.GetClearColor)
         DrawCalls(g)
         Me.Window.EndDrawing()
     End Sub
@@ -139,6 +141,7 @@ Public Class XSession
     End Function
     Public Sub SetBounds(ByVal Bounds As Rectangle)
         Me.Bounds = Bounds
+
     End Sub
     Public Function Centre() As Point
         Return New Point(Me.Bounds.X + (Me.Bounds.Width / 2), Me.Bounds.Y + (Me.Bounds.Height / 2))

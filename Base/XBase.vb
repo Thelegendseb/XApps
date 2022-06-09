@@ -1,5 +1,6 @@
 Imports System.Drawing
 Public MustInherit Class XBase
+    Private SetToUpdate As Boolean
     Private SetToDispose As Boolean
     Private SetToDraw As Boolean
     Public MustOverride Sub Update(ByVal Session As XSession)
@@ -15,5 +16,11 @@ Public MustInherit Class XBase
     End Sub
     Public Function IsSetToDraw() As Boolean
         Return Me.SetToDraw
+    End Function
+    Public Sub SetUpdateStatus(ByVal WhiteList As Boolean)
+        Me.SetToUpdate = WhiteList
+    End Sub
+    Public Function IsSetToUpdate() As Boolean
+        Return Me.SetToUpdate
     End Function
 End Class

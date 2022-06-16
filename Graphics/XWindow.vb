@@ -31,6 +31,10 @@
         Me.MouseBoxDimension = 4
         Me.MouseBox = New Rectangle(0, 0, Me.MouseBoxDimension, Me.MouseBoxDimension)
     End Sub
+    Public Sub ResetBounds()
+        Me.g.Dispose()
+        Me.g = Me.b.Allocate(Me.CreateGraphics, Me.DisplayRectangle)
+    End Sub
     Private Sub UpdateMouseBox(e As MouseEventArgs)
         Me.MouseBox = New Rectangle(e.X - MouseBoxDimension, e.Y - MouseBoxDimension, MouseBoxDimension * 2, MouseBoxDimension * 2)
     End Sub

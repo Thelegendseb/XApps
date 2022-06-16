@@ -1,8 +1,18 @@
 ﻿Public Class XApp
+    Private Parent As Form
     Public WithEvents Session As XSession
     Sub New(FormIn As Form)
-        Session = New XSession(FormIn)
+        Me.Parent = FormIn
+        Me.Session = New XSession(FormIn)
         Init(FormIn)
+    End Sub
+    Public Sub Run()
+        Me.Session.Begin()
+    End Sub
+    Public Sub Halt()
+        Me.Session.Halt()
+        GC.Collect()
+        Application.Exit()
     End Sub
     Private Sub Init(FormIn As Form)
         AddHandlers(FormIn)
@@ -12,7 +22,8 @@
         AddHandler Me.Session.Window.MouseUp, AddressOf Me.MouseUp
         AddHandler Me.Session.Window.KeyDown, AddressOf Me.KeyDown
         AddHandler Me.Session.Window.KeyUp, AddressOf Me.KeyUp
-        AddHandler Me.Session.Window.SizeChanged, AddressOf FormResize
+        '------------------------
+        AddHandler FormIn.ResizeEnd, AddressOf Me.RegionChanged
     End Sub
     Overridable Sub MouseDown(sender As Object, e As MouseEventArgs)
     End Sub
@@ -23,7 +34,11 @@
     Overridable Sub KeyUp(sender As Object, e As KeyEventArgs)
     End Sub
     '============================================================
-    Public Sub FormResize(sender As Object, e As EventArgs)
-
+    'MATCHING WINDOW TO FORM
+    Private Sub RegionChanged(sender As Object, e As EventArgs)
+        GC.Collect()
+        Me.Session.Window.Size = Me.Parent.ClientSize
+        Me.Session.SetBounds(Me.Parent.DisplayRectangle)
+        Me.Session.Window.ResetBounds()
     End Sub
 End Class

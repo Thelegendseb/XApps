@@ -1,4 +1,3 @@
-Imports System.Drawing
 Public MustInherit Class XBase
     Private SetToUpdate As Boolean
     Private SetToDispose As Boolean

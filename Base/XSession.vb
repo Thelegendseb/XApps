@@ -28,16 +28,15 @@ Public Class XSession
     '       -Graphics {Classes that draw on the screen}
 
     '====================================
+
     Public WithEvents Window As XWindow
     Public KeyManager As XInput
 
     Private Running As Boolean
     Private Speed As Short
-    Private Containers As XObjHolder 'USE DICTIONARIES?
+    Private Containers As XObjHolder
     Private Bounds As Rectangle
 
-    '{will represent borders used by XBase Inheritors}
-    '{usually will be the bounds of the window}
     Sub New(FormIn As Form)
         Me.Containers = New XObjHolder
         Me.Speed = 60 '{default}

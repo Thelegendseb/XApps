@@ -23,7 +23,7 @@
         AddHandler Me.Session.Window.KeyDown, AddressOf Me.KeyDown
         AddHandler Me.Session.Window.KeyUp, AddressOf Me.KeyUp
         '------------------------
-        AddHandler FormIn.ResizeEnd, AddressOf Me.RegionChanged
+        AddHandler FormIn.SizeChanged, AddressOf Me.RegionChanged
     End Sub
     Overridable Sub MouseDown(sender As Object, e As MouseEventArgs)
     End Sub

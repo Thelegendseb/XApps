@@ -52,6 +52,12 @@
     Public Sub SetMouseBoxDimension(val As Byte)
         Me.MouseBoxDimension = val
     End Sub
+    Public Function GetMouseBox() As Rectangle
+        Return Me.MouseBox
+    End Function
+    Public Function GetMouseBoxDimension() As Byte
+        Return Me.MouseBoxDimension
+    End Function
     Public Function GetGraphics() As Graphics
         Return Me.g.Graphics
     End Function

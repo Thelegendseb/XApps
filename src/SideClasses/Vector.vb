@@ -65,6 +65,9 @@ Public Class Vector
         Next
         Return New Vector(x / VArr.Length, y / VArr.Length)
     End Function
+    Public Shared Function FromPoint(PointIn As Point) As Vector
+        Return New Vector(PointIn.X, PointIn.Y)
+    End Function
     Public Function Unit() As Vector
         Dim len As Double = Me.Magnitude
         Return New Vector(Me.X / len, Me.Y / len)

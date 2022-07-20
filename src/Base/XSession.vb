@@ -28,16 +28,22 @@ Public Class XSession
     '       -Graphics {Classes that draw on the screen}
 
     '====================================
-
+    Private Bounds As Rectangle
+    Public Event UpdateOccured()
     Public WithEvents Window As XWindow
+    Private Container As Form
     Public KeyManager As XInput
+    Private DeltaTime As Double
 
     Private Running As Boolean
     Private Speed As Short
     Private Containers As XObjHolder
-    Private Bounds As Rectangle
 
-    Sub New(FormIn As Form)
+    Sub New()
+        Dim FormIn As New Form
+        Me.Container = FormIn
+        Application.Run(FormIn)
+        Me.Container = FormIn
         Me.Containers = New XObjHolder
         Me.Speed = 60 '{default}
         Me.Window = New XWindow(FormIn)
@@ -45,6 +51,17 @@ Public Class XSession
         Me.KeyManager = New XInput(Me.Window)
         Me.SetBounds(FormIn.DisplayRectangle)
     End Sub
+    Sub New(FormIn As Form)
+        Me.Container = FormIn
+        Me.Containers = New XObjHolder
+        Me.Container = FormIn
+        Me.Speed = 60 '{default}
+        Me.Window = New XWindow(FormIn)
+        Me.Window.Select()
+        Me.KeyManager = New XInput(Me.Window)
+        Me.SetBounds(FormIn.DisplayRectangle)
+    End Sub
+
     Public Sub Begin()
         Me.Running = True
         BeginMainLoop()
@@ -60,13 +77,15 @@ Public Class XSession
             Me.Draw()
             Application.DoEvents()
             LoopTimer.Stop()
+            SetDeltaTime(LoopTimer)
             TimerTech(LoopTimer)
         End While
     End Sub
-    Public Sub Update()
+    Private Sub Update()
         ObjQueueIteration()
         ObjListIteration()
         WhiteListIteration()
+        RaiseEvent UpdateOccured()
     End Sub
     Private Sub ObjListIteration()
         For i = 0 To Me.Containers.MainList.Count - 1
@@ -98,6 +117,9 @@ Public Class XSession
         If SleepTime > 0 Then
             Threading.Thread.Sleep(SleepTime)
         End If
+    End Sub
+    Private Sub SetDeltaTime(StopWatchIn As Stopwatch)
+        Me.DeltaTime = StopWatchIn.Elapsed.TotalSeconds
     End Sub
     Public Sub QueueRelease()
         '{Release all objects in the queue into the main list}
@@ -131,16 +153,17 @@ Public Class XSession
     Public Sub AddObjs(Objs As IEnumerable(Of XBase))
         Me.Containers.QueueList.AddRange(Objs)
     End Sub
+    Public Function GetDeltaTime() As Double
+        Return Me.DeltaTime
+    End Function
     Public Function GetMatches(Of T)() As List(Of T)
         Return Me.Containers.MainList.OfType(Of T).ToList
     End Function
-
     Public Function GetBounds() As Rectangle
         Return Me.Bounds
     End Function
     Public Sub SetBounds(ByVal Bounds As Rectangle)
         Me.Bounds = Bounds
-
     End Sub
     Public Function Centre() As Point
         Return New Point(Me.Bounds.X + (Me.Bounds.Width / 2), Me.Bounds.Y + (Me.Bounds.Height / 2))

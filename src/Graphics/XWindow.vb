@@ -15,6 +15,7 @@
     Private g As BufferedGraphics
     Private b As BufferedGraphicsContext
     Private ClearColor As Color
+    Private MouseIsDown As Boolean
     Sub New(ByRef Container As Control) '{Panel And/Or Form}
         MyBase.New()
         Me.Location = New Point(0, 0)
@@ -44,11 +45,20 @@
     Private Sub Window_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
         UpdateMouseBox(e)
     End Sub
+    Private Sub Window_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        Me.MouseIsDown = True
+    End Sub
+    Private Sub Window_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
+        Me.MouseIsDown = False
+    End Sub
 
     '=======================================
     '   Public Procedures/Functions
     '   {All of these are optional to the running of the session}
     '=======================================
+    Public Function IsMouseDown() As Boolean
+        Return Me.MouseIsDown
+    End Function
     Public Sub SetMouseBoxDimension(val As Byte)
         Me.MouseBoxDimension = val
     End Sub

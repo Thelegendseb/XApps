@@ -6,6 +6,12 @@
         Me.Session = New XSession(FormIn)
         Init(FormIn)
     End Sub
+    Sub New()
+        Dim FormIn As New Form
+        Me.Parent = FormIn
+        Me.Session = New XSession(FormIn)
+        Init(FormIn)
+    End Sub
     Public Sub Run()
         Me.Session.Begin()
     End Sub
@@ -18,12 +24,16 @@
         AddHandlers(FormIn)
     End Sub
     Private Sub AddHandlers(FormIn As Form)
+        AddHandler Me.Session.UpdateOccured, AddressOf Me.UpdateOccured
+        '------------------------
         AddHandler Me.Session.Window.MouseDown, AddressOf Me.MouseDown
         AddHandler Me.Session.Window.MouseUp, AddressOf Me.MouseUp
         AddHandler Me.Session.Window.KeyDown, AddressOf Me.KeyDown
         AddHandler Me.Session.Window.KeyUp, AddressOf Me.KeyUp
         '------------------------
         AddHandler FormIn.SizeChanged, AddressOf Me.RegionChanged
+    End Sub
+    Overridable Sub UpdateOccured()
     End Sub
     Overridable Sub MouseDown(sender As Object, e As MouseEventArgs)
     End Sub

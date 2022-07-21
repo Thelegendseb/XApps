@@ -34,7 +34,6 @@ Public Class XSession
     Private Container As Form
     Public KeyManager As XInput
     Private DeltaTime As Double
-
     Private Running As Boolean
     Private Speed As Short
     Private Containers As XObjHolder
@@ -77,8 +76,8 @@ Public Class XSession
             Me.Draw()
             Application.DoEvents()
             LoopTimer.Stop()
-            SetDeltaTime(LoopTimer)
             TimerTech(LoopTimer)
+            SetDeltaTime(LoopTimer)
         End While
     End Sub
     Private Sub Update()

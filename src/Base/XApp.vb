@@ -36,6 +36,7 @@
     Overridable Sub UpdateOccured()
     End Sub
     Overridable Sub MouseDown(sender As Object, e As MouseEventArgs)
+        Me.Session.MouseClicked(New Point(e.X, e.Y))
     End Sub
     Overridable Sub MouseUp(sender As Object, e As MouseEventArgs)
     End Sub

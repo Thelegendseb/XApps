@@ -31,6 +31,7 @@ Public Class XSession
     Private Bounds As Rectangle
     Public Event UpdateOccured()
     Public WithEvents Window As XWindow
+    Private Controls As List(Of XControl)
     Private Container As Form
     Public KeyManager As XInput
     Private DeltaTime As Double
@@ -48,6 +49,7 @@ Public Class XSession
         Me.Window = New XWindow(FormIn)
         Me.Window.Select()
         Me.KeyManager = New XInput(Me.Window)
+        Me.Controls = New List(Of XControl)
         Me.SetBounds(FormIn.DisplayRectangle)
     End Sub
     Sub New(FormIn As Form)
@@ -58,6 +60,7 @@ Public Class XSession
         Me.Window = New XWindow(FormIn)
         Me.Window.Select()
         Me.KeyManager = New XInput(Me.Window)
+        Me.Controls = New List(Of XControl)
         Me.SetBounds(FormIn.DisplayRectangle)
     End Sub
 
@@ -150,6 +153,21 @@ Public Class XSession
         Me.Containers.QueueList.Add(Obj)
     End Sub
     Public Sub AddObjs(Objs As IEnumerable(Of XBase))
+        Me.Containers.QueueList.AddRange(Objs)
+    End Sub
+    Public Sub MouseClicked(MousePos As Point)
+        For Each Control As XControl In Me.Controls
+            If Control.IsValidForClick(MousePos) Then
+                Control.TriggerMouseDown(MousePos)
+            End If
+        Next
+    End Sub
+    Public Sub AddControl(Obj As XControl)
+        Me.Controls.Add(Obj)
+        Me.Containers.QueueList.Add(Obj)
+    End Sub
+    Public Sub AddControls(Objs As IEnumerable(Of XControl))
+        Me.Controls.AddRange(Objs)
         Me.Containers.QueueList.AddRange(Objs)
     End Sub
     Public Function GetDeltaTime() As Double

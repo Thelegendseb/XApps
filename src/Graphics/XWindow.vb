@@ -37,8 +37,11 @@
         Me.g = Me.b.Allocate(Me.CreateGraphics, Me.DisplayRectangle)
     End Sub
     Private Sub UpdateMouseBox(e As MouseEventArgs)
-        Me.MouseBox = New Rectangle(e.X - MouseBoxDimension, e.Y - MouseBoxDimension, MouseBoxDimension * 2, MouseBoxDimension * 2)
+        Me.MouseBox = New Rectangle(e.X - Me.MouseBoxDimension, e.Y - Me.MouseBoxDimension, Me.MouseBoxDimension * 2, Me.MouseBoxDimension * 2)
     End Sub
+    Public Function MousePos() As Point
+        Return New Point(Me.MouseBox.X + Me.MouseBoxDimension, Me.MouseBox.Y + Me.MouseBoxDimension)
+    End Function
     '==================================
     ' Events
     '==================================

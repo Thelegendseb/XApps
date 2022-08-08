@@ -156,10 +156,8 @@ Public Class XSession
         Me.Containers.QueueList.AddRange(Objs)
     End Sub
     Public Sub MouseClicked(MousePos As Point)
-        For Each Control As XControl In Me.Controls
-            If Control.IsValidForClick(MousePos) Then
-                Control.TriggerMouseDown(MousePos)
-            End If
+        For Each ControlC As XControl In Me.Controls
+            ControlC.IsValidForClick(MousePos)
         Next
     End Sub
     Public Sub AddControl(Obj As XControl)

@@ -10,12 +10,14 @@
     'When Declared with events, you can easily handle to the events of the window.
 
     '==================================
+
     Private MouseBox As Rectangle
     Private MouseBoxDimension As Byte
     Private g As BufferedGraphics
     Private b As BufferedGraphicsContext
     Private ClearColor As Color
     Private MouseIsDown As Boolean
+
     Sub New(ByRef Container As Control) '{Panel And/Or Form}
         MyBase.New()
         Me.Location = New Point(0, 0)

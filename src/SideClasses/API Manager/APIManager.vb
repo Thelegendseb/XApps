@@ -8,7 +8,7 @@ Public Class APIManager
     ' // Serialize => To Byte Array 
     ' // Deserialize => To Object
     Public Function [Get](Of T)(CALLURL As String) As T
-        Dim Result As String = Me.Client.DownloadString(CALLURL)
+        Dim Result As String = Me.Get(CALLURL)
         Dim FormattedResult As T = JsonSerializer.Deserialize(Of T)(Result)
         Return FormattedResult
     End Function

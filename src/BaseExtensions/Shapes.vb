@@ -8,7 +8,7 @@ Namespace Shapes
 
         ' ALL CLASSES MUST INHERIT TWODBASE
 
-        'These shapes have built in Draw methods.
+        'These Shapes have built in Draw methods.
         'These draw methods are called by the Draw method of the parent class.
         'They do not account for rotation. To draw rotated objects,
         'The BaseExtensions.Renderer.Draw method must be called.

@@ -19,8 +19,6 @@ Public Class DefualtShapes
         CubeOut.GetFaces.Add(New Face({0, 4, 5, 7}))
         CubeOut.GetFaces.Add(New Face({1, 2, 3, 6}))
 
-        CubeOut.GetTransform.Scale.SetAll(75)
-
         Return CubeOut
 
     End Function
@@ -35,8 +33,6 @@ Public Class DefualtShapes
         OctahedronOut.GetVertices.Add(New Vector3(-0.5, 0, 0.5))
         OctahedronOut.GetVertices.Add(New Vector3(0.5, 0, 0.5))
 
-        OctahedronOut.GetTransform.Scale.SetAll(100)
-
         Return OctahedronOut
 
     End Function
@@ -50,8 +46,6 @@ Public Class DefualtShapes
         PyramidOut.GetVertices.Add(New Vector3(-0.5, 0.5, 0.5))
         PyramidOut.GetVertices.Add(New Vector3(0.5, 0.5, -0.5))
         PyramidOut.GetVertices.Add(New Vector3(0.5, 0.5, 0.5))
-
-        PyramidOut.GetTransform.Scale.SetAll(100)
 
         Return PyramidOut
 
@@ -74,8 +68,6 @@ Public Class DefualtShapes
         HexagonalPrismOut.GetVertices.Add(New Vector3(0.4, 1, 0))
         HexagonalPrismOut.GetVertices.Add(New Vector3(0.25, 1, 0.25))
 
-        HexagonalPrismOut.GetTransform.Scale.SetAll(120)
-
         Return HexagonalPrismOut
 
     End Function
@@ -93,8 +85,6 @@ Public Class DefualtShapes
 
             Next
         Next
-
-        CylinderOut.GetTransform.Scale.SetAll(100)
 
         Return CylinderOut
 

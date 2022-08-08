@@ -22,9 +22,9 @@ Public Class Shape
 
             ' // Apply scale from transform
 
-            Dim StateVertex As New Vector3(Me.Transform.Position.X + (Vertex.X * Me.Transform.Scale.X),
-                                           Me.Transform.Position.Y + (Vertex.Y * Me.Transform.Scale.Y),
-                                           Me.Transform.Position.Z + (Vertex.Z * Me.Transform.Scale.Z))
+            Dim StateVertex As New Vector3((Vertex.X * Me.Transform.Scale.X),
+                                            (Vertex.Y * Me.Transform.Scale.Y),
+                                            (Vertex.Z * Me.Transform.Scale.Z))
 
             ' Rotation Matrix Multiplication
 
@@ -38,6 +38,12 @@ Public Class Shape
                 StateVertex = Matrix.Multiply(Matrix.Type("Z", Me.Transform.Rotation.Roll), StateVertex)
             End If
 
+            ' // Add Position
+
+            StateVertex.X += Me.Transform.Position.X
+            StateVertex.Y += Me.Transform.Position.Y
+            StateVertex.Z += Me.Transform.Position.Z
+
             ' // Add to CurrentState List
 
             CurrentState.Add(StateVertex)
@@ -45,6 +51,7 @@ Public Class Shape
         Return CurrentState
     End Function
     '=============================
+
     Public Function GetTransform() As Transform
         Return Me.Transform
     End Function

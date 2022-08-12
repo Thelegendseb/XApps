@@ -22,27 +22,27 @@ Public Class Shape
 
             ' // Apply scale from transform
 
-            Dim StateVertex As New Vector3((Vertex.X * Me.Transform.Scale.X),
-                                            (Vertex.Y * Me.Transform.Scale.Y),
-                                            (Vertex.Z * Me.Transform.Scale.Z))
+            Dim StateVertex As New Vector3((Vertex.X * Me.GetTransform.GetScale.X),
+                                            (Vertex.Y * Me.GetTransform.GetScale.Y),
+                                            (Vertex.Z * Me.GetTransform.GetScale.Z))
 
             ' Rotation Matrix Multiplication
 
-            If Me.Transform.Rotation.Pitch <> 0 Then
-                StateVertex = Matrix.Multiply(Matrix.Type("X", Me.Transform.Rotation.Pitch), StateVertex)
+            If Me.Transform.GetRotation.Pitch <> 0 Then
+                StateVertex = Matrix.Multiply(Matrix.Type("X", Me.Transform.GetRotation.Pitch), StateVertex)
             End If
-            If Me.Transform.Rotation.Yaw <> 0 Then
-                StateVertex = Matrix.Multiply(Matrix.Type("Y", Me.Transform.Rotation.Yaw), StateVertex)
+            If Me.Transform.GetRotation.Yaw <> 0 Then
+                StateVertex = Matrix.Multiply(Matrix.Type("Y", Me.Transform.GetRotation.Yaw), StateVertex)
             End If
-            If Me.Transform.Rotation.Roll <> 0 Then
-                StateVertex = Matrix.Multiply(Matrix.Type("Z", Me.Transform.Rotation.Roll), StateVertex)
+            If Me.Transform.GetRotation.Roll <> 0 Then
+                StateVertex = Matrix.Multiply(Matrix.Type("Z", Me.Transform.GetRotation.Roll), StateVertex)
             End If
 
             ' // Add Position
 
-            StateVertex.X += Me.Transform.Position.X
-            StateVertex.Y += Me.Transform.Position.Y
-            StateVertex.Z += Me.Transform.Position.Z
+            StateVertex.X += Me.Transform.GetPosition.X
+            StateVertex.Y += Me.Transform.GetPosition.Y
+            StateVertex.Z += Me.Transform.GetPosition.Z
 
             ' // Add to CurrentState List
 

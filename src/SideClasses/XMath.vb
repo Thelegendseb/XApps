@@ -20,4 +20,10 @@
                          Max2 As Double) As Double
         Return (((Value - Min) / (Max - Min)) * (Max2 - Min2)) + Min2
     End Function
+    Public Shared Function DegreesToRadians(val As Double) As Double
+        Return val * (Math.PI / 180)
+    End Function
+    Public Shared Function RadiansToDegrees(val As Double) As Double
+        Return val * (180 / Math.PI)
+    End Function
 End Class

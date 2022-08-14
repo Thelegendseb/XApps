@@ -19,7 +19,7 @@ Namespace Networking
             Me.master.Connect(Me.endpoint)
             Me.Connected = True
         End Sub
-        Private Function GetMasterSocket() As Socket
+        Public Shared Function GetMasterSocket() As Socket
             Return New Socket(AddressFamily.InterNetwork,
                                              SocketType.Stream,
                                              ProtocolType.Tcp)

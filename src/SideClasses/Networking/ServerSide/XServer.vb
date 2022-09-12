@@ -7,13 +7,16 @@ Namespace Networking
 
             ' // Class will be running Asynchronously (listening to new connections)
 
+            Public Event MessageReceived(Data() As Byte, Client As XClientModel)
+            Public Event ClientAccepted(Client As XClientModel)
             Protected Running As Boolean
             Protected MasterSocket As Socket
+            Protected ClientQueue As List(Of XClientModel)
             Protected Clients As List(Of XClientModel)
             Protected ListenerAsync As Task
-
             Sub New(HostIP As String, Port As Integer)
                 Me.Clients = New List(Of XClientModel)
+                Me.ClientQueue = New List(Of XClientModel)
                 Me.InitializeSocket(HostIP, Port)
                 Me.InitializeListenerAsync()
             End Sub
@@ -37,20 +40,24 @@ Namespace Networking
             Private Sub Listen()
                 While Me.Running
                     Try
-
                         Me.MasterSocket.Listen()
                         ' // Accept any inbound client
                         Dim S As Socket = Me.MasterSocket.Accept()
-                        Dim Client As New XClientModel(S)
-                        Me.Clients.Add(Client)
-
-                    Catch ex As Exception
-                        Debug.WriteLine(ex)
+                        Dim Client As New XClientModel(S, Me)
+                        Me.ClientQueue.Add(Client)
+                        RaiseEvent ClientAccepted(Client)
+                    Catch
                     End Try
                 End While
             End Sub
+            Public Sub TriggerSentMessage(Data() As Byte, Client As XClientModel)
+                RaiseEvent MessageReceived(Data, Client)
+            End Sub
+            Public Sub EmptyQueue()
+                Me.Clients.AddRange(Me.ClientQueue)
+                Me.ClientQueue.Clear()
+            End Sub
         End Class
-
     End Namespace
 
 End Namespace

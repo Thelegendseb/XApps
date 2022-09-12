@@ -32,7 +32,7 @@ Namespace Networking
                 Me.Running = False
             End Sub
             Public Sub Send(data() As Byte)
-                If Me.Running Then
+                If Me.ServerLinker.GetSocket.Connected And Me.Running Then
                     Me.ServerLinker.GetSocket.Send(data)
                     RaiseEvent MessageSent(data)
                 Else
@@ -41,7 +41,7 @@ Namespace Networking
             End Sub
             ' // ==================================
             Private Sub Inbound()
-                While Me.Running
+                While Me.ServerLinker.GetSocket.Connected And Me.Running
                     Dim readByte As Integer
                     Try
                         Dim pData(Me.ServerLinker.GetSocket.SendBufferSize) As Byte

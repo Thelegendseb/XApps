@@ -8,6 +8,9 @@
             RaiseEvent MouseDown(MousePos.X, MousePos.Y)
         End If
     End Sub
+    Public Function Bounds() As Rectangle
+        Return New Rectangle(Me.X - Me.Width / 2, Me.Y - Me.Height / 2, Me.Width * 2, Me.Height * 2)
+    End Function
     Public Overrides Sub Update(Session As XSession)
         Throw New NotImplementedException()
     End Sub

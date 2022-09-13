@@ -18,9 +18,10 @@ Namespace Networking
             End Sub
             Private Sub Inbound()
                 While Me.ModelSocket.Connected
-                    Dim readByte As Integer
+                    Dim readByte As Integer = 0
+                    Dim Pdata() As Byte
                     Try
-                        Dim pData(Me.ModelSocket.SendBufferSize) As Byte
+                        ReDim Pdata(Me.ModelSocket.SendBufferSize)
                         readByte = Me.ModelSocket.Receive(pData)
                         Dim rData(readByte) As Byte
                         Array.Copy(pData, rData, readByte)

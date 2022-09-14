@@ -16,6 +16,9 @@ Namespace Networking
             Public Sub Send(data() As Byte)
                 Me.ModelSocket.Send(data)
             End Sub
+            Public Function GetSocket() As Socket
+                Return Me.ModelSocket
+            End Function
             Private Sub Inbound()
                 While Me.ModelSocket.Connected
                     Dim readByte As Integer = 0

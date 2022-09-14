@@ -7,7 +7,7 @@ Namespace Networking
 
             ' // Class will be running Asynchronously (listening to new connections)
 
-            Public Event MessageReceived(Data() As Byte, Client As XClientModel)
+            Public Event PacketReceived(Data() As Byte, Client As XClientModel)
             Public Event ClientAccepted(Client As XClientModel)
             Protected Running As Boolean
             Protected MasterSocket As Socket
@@ -51,7 +51,7 @@ Namespace Networking
                 End While
             End Sub
             Public Sub TriggerSentMessage(Data() As Byte, Client As XClientModel)
-                RaiseEvent MessageReceived(Data, Client)
+                RaiseEvent PacketReceived(Data, Client)
             End Sub
             Public Sub EmptyQueue()
                 Me.Clients.AddRange(Me.ClientQueue)

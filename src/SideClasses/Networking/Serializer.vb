@@ -9,6 +9,7 @@ Namespace Networking
             Dim recieve_str As String = System.Text.Encoding.UTF8.GetString(data)
             recieve_str = recieve_str.Replace(vbNullChar, "")
             Dim response_obj As T = JsonSerializer.Deserialize(recieve_str, GetType(T), New JsonSerializerOptions)
+            Return response_obj
         End Function
     End Class
 

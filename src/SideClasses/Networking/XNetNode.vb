@@ -44,6 +44,7 @@ Public MustInherit Class XNetNode
     End Sub
     Public Sub DisconnectSocket()
         Me.Socket_.Close()
+        Me.Socket_.Disconnect(True)
     End Sub
     Public Overridable Sub Dispose()
         If Me.Running Then

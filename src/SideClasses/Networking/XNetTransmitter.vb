@@ -1,4 +1,6 @@
 ﻿Imports System.IO
+Imports System.Net.Sockets
+
 Public Class XNetTransmitter
     Inherits XNetNode
     Protected Buffer As MemoryStream
@@ -6,6 +8,12 @@ Public Class XNetTransmitter
     Private Expected, Current As Integer
     Public Event DataSent(data() As Byte)
     Public Event DataReceived(data() As Byte)
+    Sub New()
+        MyBase.New()
+    End Sub
+    Sub New(SocketIn As Socket)
+        MyBase.New(SocketIn)
+    End Sub
     Protected Overrides Sub OnListen()
         Dim Packet() As Byte = GetAwaitedNextPacket()
         If Not Me.Receiving Then

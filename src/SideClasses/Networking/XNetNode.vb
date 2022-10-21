@@ -17,7 +17,6 @@ Public MustInherit Class XNetNode
     End Sub
     Public Sub Start()
         If Not Me.Running Then
-            Me.Running = True
             Me.ListenerTask.Start()
             Me.Running = True
         End If

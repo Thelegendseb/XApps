@@ -17,7 +17,7 @@
         End Using
         Target = ImageInit
     End Sub
-    Public Shared Function LimitCheck(val As Integer) As Integer
+    Public Shared Function RGBLimitCheck(val As Integer) As Integer
         If val > 255 Then
             Return 255
         ElseIf val < 0 Then
@@ -27,9 +27,9 @@
         End If
     End Function
     Public Shared Function GetShaded(val As Color, shade As Integer) As Color
-        Return Color.FromArgb(LimitCheck(val.R - shade),
-                              LimitCheck(val.G - shade),
-                              LimitCheck(val.B - shade))
+        Return Color.FromArgb(RGBLimitCheck(val.R - shade),
+                              RGBLimitCheck(val.G - shade),
+                              RGBLimitCheck(val.B - shade))
     End Function
     Public Shared Function GetShaded(val As Brush, shade As Integer) As Brush
         Dim NewPen As New Pen(val)

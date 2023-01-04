@@ -7,7 +7,9 @@ Xapps is essentially an abstracted layer of a basic WinForms application, allowi
 The main classes you interact are contained in src/Base. As a user of the .dll, you will be interacting with:
 
 **XApp**
+
 **XBase**
+
 **XSession**
 
 you will also be using src/Graphics/XWindow frequently. This will be explained in more detail later on.

@@ -137,7 +137,9 @@ Not all projects need to implement the XApp logic and tick system. XApps also co
 
 provides data types for representing 3D Objects in a 3D Space.
 
-Example implementation: https://github.com/Thelegendseb/3D-Convex-Polyhedron-Shadow-Rendering
+Example implementation 1: https://github.com/Thelegendseb/3D-Convex-Polyhedron-Shadow-Rendering
+
+Example implementation 2: https://github.com/Thelegendseb/3D_Engine
 
 Note: Uses the XApp base system as well. Good example for more advanced project that implements the above explanations.
 
@@ -145,13 +147,26 @@ Note: Uses the XApp base system as well. Good example for more advanced project 
 
 provides data types for connecting and transferring data from devices across the internet.
 
-Example implementation: N/A
+Example implementation: https://github.com/Thelegendseb/XApps-Networking-tests
 
 ##========================
 
 The other classes are basic modules that encapsulate .NET funcitonality. Made for ease of use in any project.
-    
-    
+
+### More Examples that use XApps to process and display data.
+
+#Bezier Curve teaching aide
+https://user-images.githubusercontent.com/62959728/210564104-bf4b68b8-d818-4325-956f-c297a2acedab.mp4
+
+#RayCasting DOOM style
+https://github.com/Thelegendseb/MazeMapper_CourseWorkCS2023
+
+#Asteroids multiplayer game
+https://user-images.githubusercontent.com/62959728/210564470-9b93590c-64a1-4545-a491-adb64bf8887e.mp4
+
+#Game copy of BuckShot - shown on https://www.youtube.com/watch?v=PC_pAgJopIA&ab_channel=PolyMars
+https://user-images.githubusercontent.com/62959728/210564925-e8428861-cb8a-41ce-ac6d-b0a48150d20c.mp4
+
 
 
 

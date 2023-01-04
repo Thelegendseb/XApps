@@ -160,6 +160,7 @@ https://user-images.githubusercontent.com/62959728/210564104-bf4b68b8-d818-4325-
 
 # RayCasting DOOM style
 https://github.com/Thelegendseb/MazeMapper_CourseWorkCS2023
+https://user-images.githubusercontent.com/62959728/210568365-c031915a-fb8d-4107-86ec-d7a5b3a97d18.mp4
 
 # Asteroids multiplayer game
 https://user-images.githubusercontent.com/62959728/210564470-9b93590c-64a1-4545-a491-adb64bf8887e.mp4

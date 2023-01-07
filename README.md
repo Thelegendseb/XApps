@@ -14,6 +14,10 @@ The main classes you interact are contained in src/Base. As a user of the .dll, 
 
 you will also be using src/Graphics/XWindow frequently. This will be explained in more detail later on.
 
+# Live Demo (Recommended to watch)
+
+Building a double pendulum using XApps - https://youtu.be/EI0OBZ-imqY
+
 # XApp
 
 XApp is the class that acts as the entry point for the programmer to enter the thread. From this class you can interact with user interactions with your program. This includes mouse and keyboard inputs. You override the relevant methods and handle the logic yourself in a more straight forward way.

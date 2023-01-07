@@ -14,19 +14,19 @@ The main classes you interact are contained in src/Base. As a user of the .dll, 
 
 you will also be using src/Graphics/XWindow frequently. This will be explained in more detail later on.
 
-#XApp
+# XApp
 
 XApp is the class that acts as the entry point for the programmer to enter the thread. From this class you can interact with user interactions with your program. This includes mouse and keyboard inputs. You override the relevant methods and handle the logic yourself in a more straight forward way.
 
-#XBase
+# XBase
 
 XBase is the class you should be interacting with the most. It acts as a low level representation of an object in your program. This could be a renderer, a physics object etc. Anything you want to be able to run code from should inherit XBase. XApp contains an instance of XSession, which handles the management and execution of the XBase instances it contains. This will make more sense in the example later on.
 
-#XSession
+# XSession
 
 Through XSession, you have control over the management of the objects in your program. Armed with acess to its methods along with pointers to the individual XBase instances, you have full control over what is executed in your program.
 
-#Example implementation
+# Example implementation
 
 I believe XApps is much easier to learn by diving straight in. Follow these steps to create your first XApp Application.
 

@@ -129,7 +129,7 @@ This basic implementation shows the ease of use of XApps. This is the result our
 Because the time is drawn every tick, the value changes in real time. Using this basic concept, We can use XApps to develop a variety of projects.
 
 
-##========================
+## ========================
 
 Not all projects need to implement the XApp logic and tick system. XApps also contains multiple classes that allow long winded processes to be performed in a much more simple and abstracted way. These classes are contained in src/SideClasses. You can use these classes to manage data in any .NET Project.
 

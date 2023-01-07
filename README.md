@@ -160,7 +160,7 @@ The other classes are basic modules that encapsulate .NET funcitonality. Made fo
 ### More Examples that use XApps to process and display data.
 
 # Bezier Curve teaching aide
-https://user-images.githubusercontent.com/62959728/210564104-bf4b68b8-d818-4325-956f-c297a2acedab.mp4
+https://user-images.githubusercontent.com/62959728/211173898-b82301b0-8325-4140-a80d-777b8f43d0b9.mp4
 
 # RayCasting DOOM style
 https://github.com/Thelegendseb/MazeMapper_CourseWorkCS2023

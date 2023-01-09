@@ -1,13 +1,13 @@
 ﻿Imports System.Numerics
 
-Public Class Slider(Of T As Control)
+Public Class Slider
 
-    Private Control_ As T
+    Private Control_ As Control
 
     Private Steps As Integer
     Private TimeDuration_s As Decimal
 
-    Sub New(ControlIn As T)
+    Sub New(ControlIn As Control)
         MyBase.New()
 
         Me.Control_ = ControlIn
@@ -20,7 +20,7 @@ Public Class Slider(Of T As Control)
 
     End Sub
 
-    Sub New(ControlIn As T, Steps_ As Integer, TimeDuration_s_ As Decimal)
+    Sub New(ControlIn As Control, Steps_ As Integer, TimeDuration_s_ As Decimal)
         MyBase.New()
 
         Me.Control_ = ControlIn

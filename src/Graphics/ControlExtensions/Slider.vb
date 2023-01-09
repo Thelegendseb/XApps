@@ -99,4 +99,12 @@ Public Class Slider
         Return Me.TimeDuration_s
     End Function
 
+    Public Sub SetControl(val As Control)
+	    Me.Control_ = val
+    End Sub
+
+    Public Function GetControl() As Control
+    	Return Me.Control_
+    End Function
+
 End Class

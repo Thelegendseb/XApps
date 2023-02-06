@@ -141,7 +141,7 @@ Not all projects need to implement the XApp logic and tick system. XApps also co
 
 provides data types for representing 3D Objects in a 3D Space.
 
-Example implementation 1: https://github.com/Thelegendseb/3D-Convex-Polyhedron-Shadow-Rendering
+Example implementation 1: https://github.com/Thelegendseb/NEA-ShadowCasting
 
 Example implementation 2: https://github.com/Thelegendseb/3D_Engine
 

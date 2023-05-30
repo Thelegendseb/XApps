@@ -9,6 +9,7 @@ Namespace Networking
         Private Expected, Current As Integer
         Public Event DataSent(data() As Byte)
         Public Event DataReceived(data() As Byte)
+        Public Event DataReceived_Stream(data As MemoryStream)
         Sub New()
             MyBase.New()
         End Sub
@@ -28,6 +29,7 @@ Namespace Networking
                 If Me.Current >= Me.Expected Then
                     Me.Receiving = False
                     RaiseEvent DataReceived(Me.Buffer.ToArray)
+                    RaiseEvent DataReceived_Stream(Me.Buffer)
                     Me.Buffer.SetLength(0)
                 End If
             End If

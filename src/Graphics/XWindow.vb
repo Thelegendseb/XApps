@@ -77,7 +77,12 @@
         Return Me.g.Graphics
     End Function
     Public Sub EndDrawing()
-        Me.g.Render()
+        Try
+            Me.g.Render()
+        Catch
+            Application.Exit()
+
+        End Try
     End Sub
     Public Sub SetClearColor(c As Color)
         Me.ClearColor = c

@@ -34,7 +34,7 @@ Through XSession, you have control over the management of the objects in your pr
 
 I believe XApps is much easier to learn by diving straight in. Follow these steps to create your first XApp Application.
 
-1) Install the .dll provided as a file in the project.
+1) Install XApps.dll from the latest release
 2) Create a WinForms application in any language ( all future examples will be in Visual Basic.NET )
 3) After the WinForms solution has been created. Create a class that inherits the XApp class. The below example is named "Program"
 
